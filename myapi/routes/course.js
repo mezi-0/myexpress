@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const book = require('../models/book_model');
+const course = require('../models/course_model');
 
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
-    book.getById(request.params.id, function(err, dbResult) {
+    course.getById(request.params.id, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
@@ -14,7 +14,7 @@ router.get('/:id?',
       }
     });
   } else {
-    book.getbook(function(err, dbResult) {
+    course.getCourse(function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
@@ -28,7 +28,7 @@ router.get('/:id?',
 
 router.post('/', 
 function(request, response) {
-  book.addbook(request.body, function(err, dbResult) {
+  course.add(request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -40,7 +40,7 @@ function(request, response) {
 
 router.delete('/:id', 
 function(request, response) {
-  book.delete(request.params.id, function(err, dbResult) {
+  course.delete(request.params.id, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -52,7 +52,7 @@ function(request, response) {
 
 router.put('/:id', 
 function(request, response) {
-  book.update(request.params.id, request.body, function(err, dbResult) {
+  course.update(request.params.id, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
